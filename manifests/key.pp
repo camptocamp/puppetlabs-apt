@@ -81,6 +81,20 @@ define apt::key (
           content => $_content,
           server  => $_server,
           options => $_options,
+        } -> anchor { "apt_key ${id} present": }
+
+        case $facts['os']['name'] {
+          'Debian': {
+            if versioncmp($facts['os']['release']['major'], '9') >= 0 {
+              ensure_packages(['dirmngr'])
+            }
+          }
+          'Ubuntu': {
+            if versioncmp($facts['os']['release']['full'], '17.04') >= 0 {
+              ensure_packages(['dirmngr'])
+            }
+          }
+          default: { }
         }
         -> anchor { "apt_key ${_id} present": }
       }
