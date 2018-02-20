@@ -1,3 +1,7 @@
+## 2.1.
+Added stretch support by installing dirmngr, wihout removing debian 6.
+  e7c561f Fixed circular dependency for package dirmngr
+
 ## Supported Release 2.4.0
 ### Summary
 A release that includes only a couple of additional features, but includes several cleanups and bugfixes around existing issues.
